@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FileScanner</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="global_str_ok">Ok</string>
+    <string name="global_str_cancel">Cancel</string>
+    <string name="blank_str"></string>
+    <string name="storage_permission">Storage permission is required for this app</string>
+</resources>

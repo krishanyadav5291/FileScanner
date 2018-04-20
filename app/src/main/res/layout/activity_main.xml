@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kyadav.filescanner.ui.main.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/noDataLayout"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:background="@drawable/nodata"
+            android:layout_gravity="center"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click on start button to get data"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/averageSize"
+        android:text="Average File Size : 00"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic|bold"
+        android:visibility="gone"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+       android:id="@+id/mostFrequentText"
+        android:text="Most Frequent File Extension"
+        android:textStyle="italic|bold"
+        android:visibility="gone"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/averageSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mostFrequentRecyclerView"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/mostFrequentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/biggestText"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic|bold"
+        android:visibility="gone"
+        android:textSize="17sp"
+        android:layout_below="@+id/mostFrequentRecyclerView"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="10 Biggest files"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/biggestRecylerView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/biggestText">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/startScanButton"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Start Scan"
+        />
+
+    <Button
+        android:id="@+id/shareData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="10dp"
+        android:textAllCaps="false"
+        android:layout_marginRight="48dp"
+        android:text="Share Data" />
+
+
+</RelativeLayout>

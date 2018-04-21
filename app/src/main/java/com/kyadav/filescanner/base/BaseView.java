@@ -23,4 +23,5 @@ public interface BaseView {
     void showAlertDialog(String title,String message);
 
     void showAlertDialog(@StringRes int title,@StringRes int message);
+
 }

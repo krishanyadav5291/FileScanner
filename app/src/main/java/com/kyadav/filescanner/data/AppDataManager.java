@@ -156,18 +156,13 @@ public class AppDataManager implements DataManager {
             // String extension = " kry "+file.getAbsolutePath().toString().substring(file.getAbsoluteFile().toString().lastIndexOf("."));
             Uri selectedUri = Uri.fromFile(file);
             String extension = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
-            Log.d(TAG, " EXT " + extension);
             if (map.containsKey(extension)) {
                 map.put(extension, map.get(extension) + 1);
             } else {
                 map.put(extension, 1);
             }
 
-            Log.d(TAG, " map " + map.get(extension));
-
         }
-
-        Log.d(TAG, "HERE");
 
 
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
@@ -178,8 +173,6 @@ public class AppDataManager implements DataManager {
             }
         });
 
-        Log.d(TAG, "HERE");
-
         Map<String, Integer> sortedMap = new LinkedHashMap<>();
         int sizeOfMap = 0;
         for (Map.Entry<String, Integer> entry : list) {
@@ -187,14 +180,13 @@ public class AppDataManager implements DataManager {
                 break;
             }
             sortedMap.put(entry.getKey(), entry.getValue());
-            if (entry.getKey() != " " && entry.getKey() != "0")
-                sizeOfMap++;
+            sizeOfMap++;
+
+
 
         }
 
         List<FileFrequencyModel> frequencyModelList = new ArrayList<>();
-
-
         for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
             FileFrequencyModel fileFrequencyModel = new FileFrequencyModel();
             fileFrequencyModel.setFileExtension(entry.getKey());

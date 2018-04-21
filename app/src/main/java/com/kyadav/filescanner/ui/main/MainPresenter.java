@@ -39,6 +39,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
     @Override
     public void onStartScanClicked() {
+        getMvpView().showNotification();
         getMvpView().showLoading();
         getCompositeDisposable()
                 .add(getDataManager().getFilesFromExternalStorage()
@@ -76,6 +77,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                         .subscribe(new Consumer<Double>() {
                             @Override
                             public void accept(Double aDouble) throws Exception {
+                                getMvpView().updateNotification("Scan Completed");
                                 getMvpView().hideLoading();
                                 getMvpView().onAverageSizeCalculated(aDouble);
                                 calculateFrequency(fileList);
@@ -88,32 +90,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
                             }
                         }));
-
-
-
-
-        /*Collections.sort(fileList, new Comparator<File>() {
-            @Override
-            public int compare(File o1, File o2) {
-                return (int) (o2.length() - o1.length());
-            }
-        });*/
-/*
-        for (int i = 0; i < 10; i++) {
-            fileSize = fileSize + fileList.get(i).length();
-            double size = fileList.get(i).length();
-            size = size / 1048576;
-            Log.d(TAG, " " + fileList.get(i).getName() + " " + size);
-
-        }*/
-
-        /*for (int i = 0; i < fileList.size(); i++) {
-            fileSize = fileSize + fileList.get(i).length();
-            double size = fileList.get(i).length();
-            size = size / 1048576;
-            Log.d(TAG, " " + fileList.get(i).getName() + " " + size + " MB ");
-
-        }*/
 
 
     }

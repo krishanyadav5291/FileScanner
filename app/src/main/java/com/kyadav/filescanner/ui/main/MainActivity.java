@@ -1,7 +1,11 @@
 package com.kyadav.filescanner.ui.main;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -45,8 +49,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
     @Inject
     BiggestFileAdapter biggestFileAdapter;
 
+    NotificationCompat.Builder builder;
+    NotificationManager notificationManager;
 
-    Button startScanButton,shareDataButton;
+
+    Button startScanButton, shareDataButton;
     TextView averageSize, maxSizeText, frequencyText;
     RecyclerView frequencyRecyclerView, biggestFileRecyclerView;
     LinearLayout noDataLayout;
@@ -55,6 +62,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
     List<FileFrequencyModel> fileFrequencyModelList;
     List<File> fileList;
 
+    private static final int NOTIFICAION_ID=199;
 
 
     @Override
@@ -91,7 +99,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
         maxSizeText = findViewById(R.id.biggestText);
         frequencyText = findViewById(R.id.mostFrequentText);
         noDataLayout = findViewById(R.id.noDataLayout);
-        shareDataButton=findViewById(R.id.shareData);
+        shareDataButton = findViewById(R.id.shareData);
 
 
     }
@@ -114,8 +122,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
             case R.id.shareData:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                Bundle bundle=new Bundle();
-                sendIntent.putExtra("AVERAGE_FILE_SIZE",averageSizeinMB);
+                Bundle bundle = new Bundle();
+                sendIntent.putExtra("AVERAGE_FILE_SIZE", averageSizeinMB);
                 sendIntent.putExtra("BIGGEST_FILE", (Serializable) fileList);
                 sendIntent.putExtra("FREQUENCY_DATA", (Serializable) fileFrequencyModelList);
                 sendIntent.setType("text/plain");
@@ -156,6 +164,25 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
         biggestFileAdapter.addItems(fileList);
         shareDataButton.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void showNotification() {
+        builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Scan")
+                .setContentText("Scan In Progress")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICAION_ID, builder.build());
+    }
+
+    @Override
+    public void updateNotification(String text) {
+        builder.setContentText(text);
+        notificationManager.notify(NOTIFICAION_ID, builder.build());
     }
 
     private int dpToPx(int dp) {

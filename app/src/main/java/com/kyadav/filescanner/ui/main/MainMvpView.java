@@ -12,7 +12,14 @@ import java.util.Map;
  */
 
 public interface MainMvpView extends BaseView {
-    public void onAverageSizeCalculated(double size);
-    public void onFrequencyCalculated(List<FileFrequencyModel> list);
-    public void onBiggestFilesCalculated(List<File> fileList);
+    void onAverageSizeCalculated(double size);
+
+    void onFrequencyCalculated(List<FileFrequencyModel> list);
+
+    void onBiggestFilesCalculated(List<File> fileList);
+
+    void showNotification();
+
+    void updateNotification(String text);
+
 }

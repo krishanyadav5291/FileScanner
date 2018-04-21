@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, View.OnCl
         super.onCreate(savedInstanceState, R.layout.activity_main);
         getActivityComponent().inject(this);
         presenter.onViewAttach(this);
+        setScreenTitle("File Scanner");
         findViewById();
         setOnClickListener();
         setUpRecyclerView();

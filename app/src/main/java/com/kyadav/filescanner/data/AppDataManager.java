@@ -40,6 +40,7 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Observable<List<File>> getFilesFromExternalStorage() {
+        list.clear();
         final File dir = new File(Environment.getExternalStorageDirectory().toString());
         return Observable.create(new ObservableOnSubscribe<List<File>>() {
             @Override

@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.kyadav.filescanner.ui.main.MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/base_topbar_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    </include>
+
     <LinearLayout
         android:id="@+id/noDataLayout"
         android:orientation="vertical"
@@ -32,6 +40,7 @@
         android:text="Average File Size : 00"
         android:layout_marginTop="10dp"
         android:textStyle="italic|bold"
+        android:layout_below="@+id/toolbar"
         android:visibility="gone"
         android:textSize="17sp"
         android:layout_centerHorizontal="true"
